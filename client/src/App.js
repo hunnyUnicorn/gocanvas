@@ -3,17 +3,23 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  const cats = [
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    "https://cdn2.thecatapi.com/images/8pl.jpg",
-    ];
-    const [loading, setLoading] = useState(false);
+  const [cats, setCats] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCats = async () => {
+      try {
+        const response = await axios.get('/api/cats');
+        setCats(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching cat images:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchCats();
+  }, []);
 
   return (
     <div className="App">
@@ -24,7 +30,7 @@ function App() {
         <div className="cat-gallery">
           {cats.map((cat, index) => (
             <div key={index} className="cat-item">
-              <img src={cat} alt="Cat"/>
+              <img src={cat.url} alt="Cat" />
             </div>
           ))}
         </div>
