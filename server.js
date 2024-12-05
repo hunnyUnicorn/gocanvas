@@ -3,7 +3,7 @@ const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.get('/api/cats', async (req, res) => {
+app.get('/cats', async (req, res) => {
     try {
         const response = await axios.get('https://api.thecatapi.com/v1/images/search?limit=10');
         res.json(response.data);
