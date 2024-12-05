@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  width: 80vw;
+  min-width: 300px;
+  max-width: 900px;
+  margin: auto;
 }
 
 .App-logo {
@@ -46,7 +50,9 @@
 
 .cat-item img {
   width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
+  border: 1px solid #000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   object-fit: cover;
 }
